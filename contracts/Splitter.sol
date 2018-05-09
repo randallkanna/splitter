@@ -10,14 +10,20 @@ contract Splitter {
     owner = msg.sender;
   }
 
-  function split(address splitOne, address splitTwo) public payable returns (bool) {
-    require(splitOne != 0x0);
-    require(splitTwo != 0x0);
+  function getBalance(address addr) returns(uint) {
+      return balances[addr];
+  }
+
+  function split(address recipient1, address recipient2) public payable returns (bool) {
+    require(recipient1 != 0x0);
+    require(recipient2 != 0x0);
     require(msg.value >= 0);
     uint halfAmount = value / 2;
 
-    balances[splitOne] += halfAmount;
-    balances[splitTwo] += halfAmount;
+    balances[recipient1] += halfAmount;
+    balances[recipient2] += halfAmount;
+
+
 
     // TO DO - remove from senders account
 
