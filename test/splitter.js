@@ -18,7 +18,7 @@ contract('Splitter', function(accounts) {
     done();
   });
 
-  it("should split ether between two accounts", async function() { // done
+  it("should split ether between two accounts", async function() { // done async
     var testAmount = 2;
 
     recipient1PreBalance = await contract.getBalance.call(recipient1);
@@ -27,18 +27,12 @@ contract('Splitter', function(accounts) {
     assert.strictEqual(recipient1PreBalance.toNumber(), 0, 'Recipient 1 should have 0 balance in test start');
     assert.strictEqual(recipient2PreBalance.toNumber(), 0, 'Recipient 2 should have 0 balance in test start');
 
-    // call the function
+    await contract.splitBalance(recipient1, recipient2, { from: sendAccount, value: testAmount })
 
+    recipient1PostBalance = await contract.getBalance.call(recipient1);
+    recipient2PostBalance = await contract.getBalance.call(recipient2);
 
-    // verify that the post balances of both work
-    // recipient1PostBalance = await contract.getBalance.call(recipient1);
-    // recipient1PostBalance = await contract.getBalance.call(recipient2);
-
-    // done(); // add this back?
-
-    // assert.strictEqual(balance2.toString(10), expectedAmount.toString(10));
-    // assert.strictEqual(balance1.toString(10), balance2.toString(10));
-    // assert.strictEqual(postBalanceBob.toNumber(), (preBalanceBob.toNumber() + splitting), "Bob did not receive the splitting.");
-
+    assert.strictEqual(recipient1PostBalance.toNumber(), 1, 'Recipient 1 should have 1 balance after split');
+    assert.strictEqual(recipient2PostBalance.toNumber(), 1, 'Recipient 2 should have 1 balance after split');
   });
 });
