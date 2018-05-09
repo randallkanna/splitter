@@ -6,19 +6,29 @@ contract Splitter {
   address public splitTwo;
   address public owner;
 
-  function Splitter(address splitUser1, address splitUser2) public {
+  function Splitter() public {
     owner = msg.sender;
-    splitOne = splitUser1;
-    splitTwo = splitUser2;
+    splitOne = _splitOne;
+    splitTwo = _splitTwo;
   }
 
-  function split() public payable returns (bool) {
+  function split(address _splitOne, address _splitTwo) public payable returns (bool) {
     require(splitOne != 0x0);
     require(splitTwo != 0x0);
-    require(msg.sender.balance >= value);
+    require(msg.value >= 0);
     uint256 value = msg.value;
 
-    splitOne.transfer(value / 2);
-    splitTwo.transfer(value / 2);
+    uint halfAmount = msg.value / 2;
+
+    balances[splitOne] = halfAmount;
+    balances[splitTwo] = halfAmount
+
+    // TO DO - remove from senders account
+
+    return true;
   }
+
+  // create a function to check if
+
+  // create a function to withdraw funds
 }

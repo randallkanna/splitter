@@ -6,5 +6,5 @@ module.exports = function(deployer) {
 };
 
 module.exports = function(deployer) {
-  deployer.deploy(Splitter)
+  deployer.deploy(Splitter, 1, 2)
 }
