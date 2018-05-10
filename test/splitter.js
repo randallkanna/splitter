@@ -37,7 +37,8 @@ contract('Splitter', function(accounts) {
   });
 
   it("should only split funds if owner has enough funds to complete transaction", async function() {
-    await contract.checkBalance(sendAccount);
+    var testAmount = 20;
+    await contract.checkBalanceIsSufficient({ from: sendAccount, value: testAmount });
 
     assert.isTrue(true);
   });

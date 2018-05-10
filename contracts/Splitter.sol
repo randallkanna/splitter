@@ -18,7 +18,7 @@ contract Splitter {
     require(msg.value >= 0);
     uint halfAmount = msg.value / 2;
 
-    checkBalance
+    /* checkBalanceIsSufficient */
 
     balances[recipient1] += halfAmount;
     balances[recipient2] += halfAmount;
@@ -26,10 +26,15 @@ contract Splitter {
     return true;
   }
 
-  function checkBalance(address messageOwner) public returns (bool) {
+  function checkBalanceIsSufficient() public payable returns (bool) {
     // create a function to check if the sender has enough money
-    return true;
-  }
+    uint senderAmount = getBalance(owner);
+    uint messageAmount = msg.value;
 
-  // create a function to withdraw funds
+    /* if(senderAmount >= messageAmount) {
+      return true;
+    } else {
+      throw;
+    } */
+  }
 }
