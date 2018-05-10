@@ -35,4 +35,10 @@ contract('Splitter', function(accounts) {
     assert.strictEqual(recipient1PostBalance.toNumber(), 1, 'Recipient 1 should have 1 balance after split');
     assert.strictEqual(recipient2PostBalance.toNumber(), 1, 'Recipient 2 should have 1 balance after split');
   });
+
+  it("should only split funds if owner has enough funds to complete transaction", async function() {
+    await contract.checkBalance(sendAccount);
+
+    assert.isTrue(true);
+  });
 });

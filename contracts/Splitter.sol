@@ -18,15 +18,18 @@ contract Splitter {
     require(msg.value >= 0);
     uint halfAmount = msg.value / 2;
 
+    checkBalance
+
     balances[recipient1] += halfAmount;
     balances[recipient2] += halfAmount;
-
-    // TO DO - remove from senders account
 
     return true;
   }
 
-  // create a function to check if the sender has enough money
+  function checkBalance(address messageOwner) public returns (bool) {
+    // create a function to check if the sender has enough money
+    return true;
+  }
 
   // create a function to withdraw funds
 }
