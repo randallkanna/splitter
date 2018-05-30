@@ -1,16 +1,12 @@
-pragma solidity ^0.4.4;
-
-
 contract Splitter {
   address public owner;
-  uint public value;
   mapping (address => uint) public balances;
 
   function Splitter() public {
     owner = msg.sender;
   }
 
-  function getBalance(address addr) public returns(uint) {
+  function getBalance(address addr) view returns(uint) {
       return balances[addr];
   }
 
@@ -18,23 +14,13 @@ contract Splitter {
     require(msg.value >= 0);
     uint halfAmount = msg.value / 2;
 
-    /* checkBalanceIsSufficient */
-
     balances[recipient1] += halfAmount;
     balances[recipient2] += halfAmount;
 
     return true;
   }
 
-  function checkBalanceIsSufficient() public payable returns (bool) {
-    // create a function to check if the sender has enough money
-    uint senderAmount = getBalance(owner);
-    uint messageAmount = msg.value;
+  function withdrawFunds(uint amount) {
 
-    /* if(senderAmount >= messageAmount) {
-      return true;
-    } else {
-      throw;
-    } */
   }
 }
