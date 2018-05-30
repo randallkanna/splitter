@@ -1,6 +1,3 @@
-pragma solidity 0.4.4;
-
-
 contract Splitter {
   address public owner;
   mapping (address => uint) public balances;
